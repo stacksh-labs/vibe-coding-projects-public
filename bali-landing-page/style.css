@@ -1,25 +1,25 @@
 /* ═══════════════════════════════════════════════════════════════
    Bali Landing Page — Pure CSS, no frameworks
-   Palette: tropical green, gold, warm white, deep forest
+   Palette: ocean blue, sky cyan, soft off-white, deep navy
    ═══════════════════════════════════════════════════════════════ */
 
 /* ─── Custom properties ──────────────────────────────────────── */
 :root {
-  --green-deep:    #1a3a2a;
-  --green-mid:     #2d6a4f;
-  --green-light:   #52b788;
-  --green-pale:    #d8f3dc;
-  --gold:          #c9a84c;
-  --gold-light:    #f0d78c;
-  --gold-pale:     #fdf6e3;
-  --white:         #fefefe;
-  --off-white:     #f8f5ef;
-  --text-dark:     #1c1c1c;
-  --text-body:     #3d3d3d;
-  --text-muted:    #7a7a7a;
-  --shadow-sm:     0 2px 12px rgba(26,58,42,.08);
-  --shadow-md:     0 6px 28px rgba(26,58,42,.14);
-  --shadow-lg:     0 16px 56px rgba(26,58,42,.20);
+  --green-deep:    #1a3a5c;
+  --green-mid:     #2a6ea6;
+  --green-light:   #4fc3f7;
+  --green-pale:    #e6f4fb;
+  --gold:          #4fc3f7;
+  --gold-light:    #8adcfb;
+  --gold-pale:     #e9f8ff;
+  --white:         #f7fbff;
+  --off-white:     #f2f7fb;
+  --text-dark:     #13273b;
+  --text-body:     #2d4358;
+  --text-muted:    #5f7892;
+  --shadow-sm:     0 2px 12px rgba(26,58,92,.10);
+  --shadow-md:     0 6px 28px rgba(26,58,92,.16);
+  --shadow-lg:     0 16px 56px rgba(26,58,92,.22);
   --radius:        14px;
   --radius-lg:     24px;
   --transition:    0.35s cubic-bezier(.4,0,.2,1);
@@ -140,7 +140,7 @@ ul { list-style: none; }
   background: var(--gold-light);
   border-color: var(--gold-light);
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(201,168,76,.4);
+  box-shadow: 0 8px 24px rgba(79,195,247,.38);
 }
 
 /* ─── Navigation ─────────────────────────────────────────────── */
@@ -158,7 +158,7 @@ ul { list-style: none; }
 }
 
 .nav--scrolled {
-  background: rgba(26,58,42,.92);
+  background: rgba(16,44,76,.92);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   box-shadow: var(--shadow-md);
@@ -213,9 +213,9 @@ ul { list-style: none; }
 
   /* Gradient simulating tropical Bali atmosphere */
   background:
-    radial-gradient(ellipse at 30% 60%, rgba(82,183,136,.30) 0%, transparent 55%),
-    radial-gradient(ellipse at 75% 30%, rgba(201,168,76,.18) 0%, transparent 50%),
-    linear-gradient(160deg, #0d2b1e 0%, #1a3a2a 40%, #2d6a4f 100%);
+    radial-gradient(ellipse at 30% 60%, rgba(79,195,247,.28) 0%, transparent 55%),
+    radial-gradient(ellipse at 75% 30%, rgba(138,220,251,.20) 0%, transparent 50%),
+    linear-gradient(160deg, #0f2740 0%, #1a3a5c 40%, #2a6ea6 100%);
 }
 
 /* Subtle tropical texture overlay */
@@ -224,8 +224,8 @@ ul { list-style: none; }
   position: absolute;
   inset: 0;
   background-image:
-    radial-gradient(circle at 20% 80%, rgba(82,183,136,.12) 0%, transparent 40%),
-    radial-gradient(circle at 80% 20%, rgba(240,215,140,.10) 0%, transparent 40%);
+    radial-gradient(circle at 20% 80%, rgba(79,195,247,.14) 0%, transparent 40%),
+    radial-gradient(circle at 80% 20%, rgba(138,220,251,.12) 0%, transparent 40%);
   pointer-events: none;
 }
 
@@ -234,8 +234,8 @@ ul { list-style: none; }
   inset: 0;
   background: linear-gradient(
     to bottom,
-    rgba(13,43,30,.2) 0%,
-    rgba(13,43,30,.55) 100%
+    rgba(15,39,64,.22) 0%,
+    rgba(15,39,64,.58) 100%
   );
 }
 
@@ -421,31 +421,31 @@ ul { list-style: none; }
 /* Gradient backgrounds to simulate Bali landscapes */
 .landscape-item__bg--terraces {
   background:
-    linear-gradient(170deg, rgba(26,58,42,.4) 0%, rgba(45,106,79,.2) 100%),
+    linear-gradient(170deg, rgba(26,58,92,.40) 0%, rgba(42,110,166,.22) 100%),
     repeating-linear-gradient(
       10deg,
-      rgba(82,183,136,.6) 0px, rgba(82,183,136,.6) 12px,
-      rgba(52,153,106,.6) 12px, rgba(52,153,106,.6) 24px,
-      rgba(26,103,56,.6) 24px, rgba(26,103,56,.6) 36px
+      rgba(79,195,247,.58) 0px, rgba(79,195,247,.58) 12px,
+      rgba(66,159,214,.58) 12px, rgba(66,159,214,.58) 24px,
+      rgba(38,109,168,.58) 24px, rgba(38,109,168,.58) 36px
     ),
-    linear-gradient(to bottom, #2d6a4f, #40916c, #52b788);
+    linear-gradient(to bottom, #2a6ea6, #3f8fc8, #4fc3f7);
 }
 
 .landscape-item__bg--volcano {
   background:
-    radial-gradient(ellipse at 50% 90%, rgba(82,183,136,.3) 0%, transparent 60%),
-    linear-gradient(to bottom, #b7c4bc 0%, #4a7a5a 50%, #2d6a4f 100%);
+    radial-gradient(ellipse at 50% 90%, rgba(79,195,247,.32) 0%, transparent 60%),
+    linear-gradient(to bottom, #dceaf4 0%, #5f8fb8 50%, #2a6ea6 100%);
 }
 
 .landscape-item__bg--beach {
   background:
     linear-gradient(to bottom,
       #4fc3f7 0%,
-      #81d4fa 30%,
-      #b3e0f5 50%,
-      #e8d5b0 65%,
-      #d4b896 80%,
-      #c4a882 100%
+      #7fd7fb 30%,
+      #b7e8fc 50%,
+      #d9f1fb 65%,
+      #b8e3f8 80%,
+      #92d4f3 100%
     );
 }
 
@@ -458,7 +458,7 @@ ul { list-style: none; }
   inset-block-end: 0;
   inset-inline: 0;
   padding: 1.5rem;
-  background: linear-gradient(to top, rgba(13,43,30,.85) 0%, transparent 100%);
+  background: linear-gradient(to top, rgba(15,39,64,.84) 0%, transparent 100%);
   color: var(--white);
 }
 
@@ -557,9 +557,9 @@ ul { list-style: none; }
 .cta {
   padding-block: clamp(5rem, 10vw, 9rem);
   background:
-    radial-gradient(ellipse at 20% 50%, rgba(82,183,136,.15) 0%, transparent 55%),
-    radial-gradient(ellipse at 80% 50%, rgba(201,168,76,.12) 0%, transparent 55%),
-    linear-gradient(135deg, var(--green-deep) 0%, #14312200 100%),
+    radial-gradient(ellipse at 20% 50%, rgba(79,195,247,.16) 0%, transparent 55%),
+    radial-gradient(ellipse at 80% 50%, rgba(138,220,251,.14) 0%, transparent 55%),
+    linear-gradient(135deg, var(--green-deep) 0%, #1a3a5c00 100%),
     var(--green-deep);
 }
 
@@ -596,7 +596,7 @@ ul { list-style: none; }
 
 /* ─── Footer ─────────────────────────────────────────────────── */
 .footer {
-  background: #0d2b1e;
+  background: #102a44;
   color: rgba(255,255,255,.55);
   padding-block: 2.5rem;
   font-size: .85rem;
