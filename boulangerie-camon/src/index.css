@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+body {
+  @apply m-0 bg-cream font-sans text-cocoa antialiased;
+}
+
+.hero-grain {
+  background:
+    radial-gradient(circle at 20% 20%, rgba(255, 211, 139, 0.35), transparent 45%),
+    radial-gradient(circle at 75% 30%, rgba(190, 111, 69, 0.45), transparent 42%),
+    radial-gradient(circle at 50% 85%, rgba(255, 241, 214, 0.22), transparent 50%),
+    linear-gradient(125deg, #6e3d24 10%, #ad6943 45%, #c58d55 75%, #e2c08a 100%);
+}
+
+.fade-section {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 700ms ease, transform 700ms ease;
+}
+
+.fade-section.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
