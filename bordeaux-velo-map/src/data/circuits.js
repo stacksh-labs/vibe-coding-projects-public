@@ -56,6 +56,7 @@ export const circuits = [
   {
     id: "entre-deux-mers",
     name: "Excursion en Entre-deux-Mers",
+    gpxFile: "/gpx/Parcours-01-Excursion-en-Entre-deux-Mers.gpx",
     distance: "21 km (boucle)",
     distanceKm: 21,
     duree: "~3h",
@@ -81,6 +82,7 @@ export const circuits = [
   {
     id: "vignes-architecture",
     name: "Aventure entre vignes et architecture",
+    gpxFile: "/gpx/Parcours-02-Aventure-entre-vignes-et-architecture.gpx",
     distance: "18 km (boucle)",
     distanceKm: 18,
     duree: "~3h",
@@ -106,6 +108,7 @@ export const circuits = [
   {
     id: "jalles-lac",
     name: "Paysages de Jalles et Bordeaux Lac",
+    gpxFile: "/gpx/Parcours-03-04-Paysages-de-Jalles.gpx",
     distance: "40 km (boucle)",
     distanceKm: 40,
     duree: "~5h",
@@ -131,6 +134,7 @@ export const circuits = [
   {
     id: "bordeaux-lac",
     name: "Tours et détours à Bordeaux Lac",
+    gpxFile: "/gpx/Parcours-03-04-Tour-et-detour-a-Bordeaux-Lac.gpx",
     distance: "20 km (boucle)",
     distanceKm: 20,
     duree: "~3h",
@@ -155,6 +159,7 @@ export const circuits = [
   {
     id: "routes-medoc",
     name: "Routes du Médoc",
+    gpxFile: "/gpx/Parcours-05-Sur-la-route-du-Medoc.gpx",
     distance: "18 km (boucle)",
     distanceKm: 18,
     duree: "~2h",
@@ -179,6 +184,7 @@ export const circuits = [
   {
     id: "coteaux",
     name: "Balade panoramique des coteaux",
+    gpxFile: "/gpx/Parcours-07-Balade-panoramique-des-coteaux.gpx",
     distance: "16 km (boucle)",
     distanceKm: 16,
     duree: "~2h30",
@@ -203,6 +209,7 @@ export const circuits = [
   {
     id: "vignoble-medoc",
     name: "Vignoble urbain Médoc",
+    gpxFile: "/gpx/Parcours-09-Excursion-dans-le-vignoble-urbain.gpx",
     distance: "29 km (boucle)",
     distanceKm: 29,
     duree: "~3h (prévoir journée)",
@@ -227,6 +234,7 @@ export const circuits = [
   {
     id: "bordeaux-e2m",
     name: "De Bordeaux à l'Entre-deux-Mers",
+    gpxFile: "/gpx/Parcours-10-De-Bordeaux-a-l-Entre-deux-Mers.gpx",
     distance: "28 km (boucle)",
     distanceKm: 28,
     duree: "~3h",
@@ -252,6 +260,7 @@ export const circuits = [
   {
     id: "saint-emilion",
     name: "Bordeaux à Saint-Émilion par la Scandibérique",
+    gpxFile: "/gpx/Parcours-11-De-Bordeaux-a-Saint-Emilion.gpx",
     distance: "50 km (aller simple)",
     distanceKm: 50,
     duree: "~4h",
@@ -272,6 +281,42 @@ export const circuits = [
       [44.894, -0.15],
     ],
     tags: ["saint-émilion", "voie-verte", "scandibérique", "vignobles"],
+  },
+  {
+    id: "presquile-garonne",
+    name: "Découverte de la Presqu'île côté Garonne",
+    gpxFile: "/gpx/Parcours-06-Decouverte-de-la-Presqu-ile-cote-Garonne.gpx",
+    distance: "29 km (boucle)",
+    distanceKm: 29,
+    duree: "~3h",
+    dureeH: 3,
+    difficulte: "Moyenne",
+    type: "VTC",
+    revetement: "Route/piste cyclable",
+    note: 4.0,
+    source: "bordeaux-metropole",
+    description:
+      "La Presqu'île côté Garonne, au nord-est de la métropole. Parcs et domaines viticoles, paysages remarquables.",
+    waypoints: [],
+    tags: ["presqu-île", "garonne", "vignobles", "boucle"],
+  },
+  {
+    id: "pessac-leognan",
+    name: "À la découverte de Pessac-Léognan",
+    gpxFile: "/gpx/Parcours-08-A-la-decouverte-de-Pessac-Leognan.gpx",
+    distance: "29 km (boucle)",
+    distanceKm: 29,
+    duree: "~3h",
+    dureeH: 3,
+    difficulte: "Facile",
+    type: "VTC",
+    revetement: "Piste cyclable/route",
+    note: 4.0,
+    source: "bordeaux-metropole",
+    description:
+      "Au départ de Bègles, immersion dans les parcs de la vallée de l'eau bourde et châteaux Pessac-Léognan. Pinède du lac bleu.",
+    waypoints: [],
+    tags: ["pessac-léognan", "vignobles", "forêt", "boucle"],
   },
   {
     id: "boucle-verte",

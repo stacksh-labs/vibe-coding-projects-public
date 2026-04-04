@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { MapContainer, TileLayer, Polyline, Marker, Tooltip, useMap } from 'react-leaflet'
 import L from 'leaflet'
 
@@ -27,18 +27,56 @@ const COLORS_BRIGHT = {
   'communaute': '#4ade80',
 }
 
-function FitBounds({ circuit }) {
+async function fetchAndParseGpx(gpxUrl) {
+  try {
+    const response = await fetch(gpxUrl);
+    const text = await response.text();
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(text, 'application/xml');
+
+    // Try with namespace
+    const ns = 'http://www.topografix.com/GPX/1/1';
+    let trkpts = Array.from(doc.getElementsByTagNameNS(ns, 'trkpt'));
+
+    // Fallback without namespace
+    if (trkpts.length === 0) {
+      trkpts = Array.from(doc.getElementsByTagName('trkpt'));
+    }
+
+    let coords = trkpts.map(pt => [
+      parseFloat(pt.getAttribute('lat')),
+      parseFloat(pt.getAttribute('lon'))
+    ]);
+
+    // Simplify: keep 1 out of every 3 points if more than 150 points
+    if (coords.length > 150) {
+      coords = coords.filter((_, i) => i % 3 === 0);
+    }
+
+    return coords;
+  } catch (e) {
+    console.error('GPX load error:', gpxUrl, e);
+    return null;
+  }
+}
+
+function FitBounds({ circuit, gpxCoords }) {
   const map = useMap()
   useEffect(() => {
     if (circuit) {
-      const bounds = L.latLngBounds(circuit.waypoints)
-      map.fitBounds(bounds, { padding: [50, 50], maxZoom: 13 })
+      const positions = gpxCoords.has(circuit.id)
+        ? gpxCoords.get(circuit.id)
+        : circuit.waypoints
+      if (positions && positions.length > 0) {
+        const bounds = L.latLngBounds(positions)
+        map.fitBounds(bounds, { padding: [50, 50], maxZoom: 13 })
+      }
     }
-  }, [circuit, map])
+  }, [circuit, gpxCoords, map])
   return null
 }
 
-function CircuitLine({ circuit, isSelected, isHovered, onSelect }) {
+function CircuitLine({ circuit, isSelected, isHovered, onSelect, gpxCoords }) {
   const color = isSelected
     ? COLORS_BRIGHT[circuit.source]
     : COLORS[circuit.source]
@@ -46,10 +84,16 @@ function CircuitLine({ circuit, isSelected, isHovered, onSelect }) {
   const weight = isSelected ? 5 : isHovered ? 4 : 3
   const opacity = isSelected ? 1 : isHovered ? 0.9 : 0.7
 
+  const positions = gpxCoords.has(circuit.id)
+    ? gpxCoords.get(circuit.id)
+    : circuit.waypoints
+
+  if (!positions || positions.length === 0) return null
+
   return (
     <>
       <Polyline
-        positions={circuit.waypoints}
+        positions={positions}
         pathOptions={{ color, weight, opacity }}
         eventHandlers={{ click: () => onSelect(circuit.id) }}
       >
@@ -62,7 +106,7 @@ function CircuitLine({ circuit, isSelected, isHovered, onSelect }) {
         </Tooltip>
       </Polyline>
       {(isSelected || isHovered) && (
-        <Marker position={circuit.waypoints[0]} icon={flagIcon} />
+        <Marker position={positions[0]} icon={flagIcon} />
       )}
     </>
   )
@@ -70,6 +114,23 @@ function CircuitLine({ circuit, isSelected, isHovered, onSelect }) {
 
 export default function MapView({ circuits, selectedId, hoveredId, onSelect }) {
   const selectedCircuit = circuits.find((c) => c.id === selectedId) || null
+  const [gpxCoords, setGpxCoords] = useState(new Map())
+
+  useEffect(() => {
+    const loadGpx = async () => {
+      const map = new Map();
+      for (const circuit of circuits) {
+        if (circuit.gpxFile) {
+          const coords = await fetchAndParseGpx(circuit.gpxFile);
+          if (coords && coords.length > 0) {
+            map.set(circuit.id, coords);
+          }
+        }
+      }
+      setGpxCoords(map);
+    };
+    loadGpx();
+  }, []);
 
   return (
     <MapContainer
@@ -82,7 +143,7 @@ export default function MapView({ circuits, selectedId, hoveredId, onSelect }) {
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      <FitBounds circuit={selectedCircuit} />
+      <FitBounds circuit={selectedCircuit} gpxCoords={gpxCoords} />
       {circuits.map((c) => (
         <CircuitLine
           key={c.id}
@@ -90,6 +151,7 @@ export default function MapView({ circuits, selectedId, hoveredId, onSelect }) {
           isSelected={selectedId === c.id}
           isHovered={hoveredId === c.id}
           onSelect={onSelect}
+          gpxCoords={gpxCoords}
         />
       ))}
     </MapContainer>
